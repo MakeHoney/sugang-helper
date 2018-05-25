@@ -1,0 +1,90 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap";
+body { 
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+
+@import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
+
+*{
+    font-family: 'Nanum Gothic';
+}
+a{
+    color: #000000;
+    text-decoration: none;
+}
+a:hover{
+    color: #bbbbbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+/*nav*/
+.navbar-default{ /*back*/
+    background-color: #000000 ;
+    border-color: #000000;
+}
+.navbar-default .navbar-brand {/*nav title*/
+    color:#ffffff;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    background-color:transparent;/*nav mouse*/
+    color: #bbbbbb;
+}
+.navbar-default .navbar-nav >.active> a,
+.navbar-default .navbar-nav >.active> a:hover,
+.navbar-default .navbar-nav >.active> a:focus{ /*selected nav color*/
+    color:white;
+    background-color: #000000;
+}
+
+.navbar-default .navbar-nav >.li> a:hover,
+.navbar-default .navbar-nav >.li> a:focus{ /*selected nav mouse*/
+    color: #bbbbbb;
+}
+.navbar-default .navbar-nav >.open> a,
+.navbar-default .navbar-nav >.open> a:hover,
+.navbar-default .navbar-nav >.open> a:focus{ /*dropdown mouse color*/
+    color:white;
+    background-color: #000000;
+}
+.navbar-default .navbar-nav > li > a{/*nav base color*/
+    color: white;
+}
+
+
+
+#footer{
+    background-color: #000000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.copyright{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 40px 15px 60px 15px;
+}
+.copyright p{
+
+    color: white;
+}
