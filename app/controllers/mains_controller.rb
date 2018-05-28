@@ -14,7 +14,7 @@ class MainsController < ApplicationController
       coursesNotTake = Hash.new();
       3.times do |i|
         # 교양 major_id 통일시키고 교양도 띄워줘야함
-        sql = "SELECT * FROM subjects WHERE major_id = #{stu_major} and category_id = #{i} and subj_id NOT IN (
+        sql = "SELECT * FROM subjects WHERE (category_id = 0 or major_id = #{stu_major}) and category_id = #{i} and subj_id NOT IN (
                SELECT subj_id FROM take_subjects WHERE stu_id=#{stu_id}
               );"
         coursesNotTake[SubjectCategory.find(i).category_name] = Subject.connection.exec_query(sql).rows;
