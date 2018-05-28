@@ -11,6 +11,8 @@ gem 'simple_form'
 gem 'jquery-rails'
 gem 'chart-js-rails'
 gem 'bootstrap-sass', '~> 3.3.7'
+gem 'rails_db', '2.0'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
