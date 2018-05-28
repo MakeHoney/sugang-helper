@@ -12,10 +12,7 @@ gem 'jquery-rails'
 gem 'chart-js-rails'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'rails_db', '2.0'
-<<<<<<< HEAD
 
-=======
->>>>>>> cca5d4e01fd591506892d5bd3b3c15e040d1fd8a
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
