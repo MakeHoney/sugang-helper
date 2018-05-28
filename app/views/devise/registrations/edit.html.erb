@@ -25,7 +25,7 @@
 
   <h3>탈퇴</h3>
 
-  <p><%= link_to "회원탈퇴하기", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  <p><%= link_to "회원탈퇴하기", registration_path(resource_name), data: { confirm: "탈퇴하신 정보는 복구가 불가능합니다.\n정말 탈퇴하시겠어요?" }, method: :delete %></p>
 
   <%= link_to "돌아가기", :back %>
 </div>
