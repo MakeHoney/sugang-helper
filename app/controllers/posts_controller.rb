@@ -5,6 +5,8 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    @postsSoft = Post.where(category_id: 1)
+    @postsCyber = Post.where(category_id: 2)
   end
 
   # GET /posts/1
