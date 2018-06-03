@@ -1,16 +1,21 @@
 
+
 <%= simple_form_for(@post) do |f| %>
   <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :title, label: "제목"%>
-    <%= f.input :category_id, label: "학과" %>
-    <%= f.input :desc1, label: "임시" %>
-    <%= f.input :desc2, label: "내용" %>
+  <div class="form-group">
+    <%= f.input :title, label: "제목", input_html: { class: 'form-control' } %>
   </div>
+  <div class="form-group">
+    <%= f.input :category_id, label: "학과", input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group">
+    <%= f.input :desc1, label: "임시", input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group">
+    <%= f.input :desc2, label: "내용", input_html: { class: 'form-control' } %>
+  </div>
+  <%= f.button :submit, class: 'btn btn-default', value: "완료"%>
+  <%= link_to '뒤로가기', posts_path, class: 'btn btn-default' %>
 
-  <div class="form-actions">
-    <%= f.button :submit, value: "완료" %>
-  </div>
 <% end %>

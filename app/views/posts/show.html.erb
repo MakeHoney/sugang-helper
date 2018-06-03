@@ -1,23 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>제목:</strong>
-  <%= @post.title %>
-</p>
+<div class='post'>
+  <div class="title">
+    <h3><%= @post.title %></h3>
+    학과 : <%= @post.category_id %>
+  </div>
 
-<p>
-  <strong>학과:</strong>
-  <%= @post.category_id %>
-</p>
+  <div class="desc2">
+    <%= @post.desc2 %>
+  </div>
 
-<p>
-  <%= @post.desc1 %>
-</p>
+  <div class="user">
+    <strong>글쓴이: </strong>
+    <%= @post.user.present? ? @post.user.email : "an anonymous user" %>,
+    <%= time_ago_in_words(@post.created_at) %> ago
+  </div>
+</div>
 
-<p>
-  <strong>내용:</strong>
-  <%= @post.desc2 %>
-</p>
+<hr>
+<%= link_to '글수정', edit_post_path(@post) , class: 'btn btn-default' %> 
+<%= link_to '뒤로가기', posts_path, class: 'btn btn-default' %>
 
-<%= link_to '글수정', edit_post_path(@post) %> |
-<%= link_to '뒤로가기', posts_path %>

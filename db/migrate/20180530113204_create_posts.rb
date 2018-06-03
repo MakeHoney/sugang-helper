@@ -5,8 +5,10 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.integer :category_id
       t.text :desc1
       t.text :desc2
+      t.integer :user_id
 
       t.timestamps
     end
+    add_index :posts, :user_id
   end
 end
