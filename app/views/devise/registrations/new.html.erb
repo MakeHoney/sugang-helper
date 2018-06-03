@@ -1,17 +1,87 @@
-<div class="container">
-  <h2>회원가입</h2>
-  
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= f.error_notification %>
-  
-    <div class="form-inputs">
-      <%= f.input :email, label: "이메일", required: true, autofocus: true %>
-      <%= f.input :password, label: "비밀번호", rrequired: true, hint: ("영문 #{@minimum_password_length}자 이상" if @minimum_password_length) %>
-      <%= f.input :password_confirmation, label: "비밀번호 확인", rrequired: true %>
+<head>
+	<title>수강신청 헬퍼 회원가입</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+
+
+ <body class = "test3" id = "test4"> 
+ <div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100 p-t-30 p-b-50">
+    <span class="login100-form-title p-b-41">
+					회원가입
+				</span>
+    
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+     <div class="login100-form validate-form p-b-33 p-t-5">
+        
+      <div class="wrap-input100 validate-input " data-validate = "Enter username">
+        <%= f.input :email, label: "이메일", required: true, autofocus: true, input_html: {class:"input100 ",name:"text",type:"email",placeholder:"Email" } %>
+        <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+      </div>
+      
+      <div class="wrap-input100 validate-input " data-validate = "Enter password">
+        <%= f.input :password, label: "비밀번호", required: true,  input_html: {class:"input100",name:"pass",type:"password",placeholder:"Password"} %>
+        <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+      </div>
+      
+       <div class="wrap-input100 validate-input " data-validate = "Enter password">
+        <%= f.input :password_confirmation, label: "비밀번호 확인", input_html: {class:"input100",name:"pass",type:"password",placeholder:"Password"}, rrequired: true %>
+        <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+      </div>
+    
+      <div class="form-actions container-login100-form-btn m-t-32">
+        <%= f.button :submit, "회원가입" %>
+      </div>
+    
     </div>
-  
-    <div class="form-actions">
-      <%= f.button :submit, "회원가입" %>
-    </div>
-  <% end %>
+   </div>
+  </div>
 </div>
+<% end %>
+  <div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+  
+  
+</body>

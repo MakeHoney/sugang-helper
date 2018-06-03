@@ -13,4 +13,12 @@ module ApplicationHelper
         flash_type.to_s
     end
   end
+  
+  def icon(shape)
+    return "<span class='glyphicon glyphicon-#{shape}'></span>".html_safe
+  end
+  
+  def user_roles(user)
+    user.roles.map(&:name).join(',').titleize
+  end
 end

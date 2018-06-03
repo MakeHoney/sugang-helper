@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  filterSelection("showall");
+  filterSelection("all");
 })
 
 function filterSelection(c) {

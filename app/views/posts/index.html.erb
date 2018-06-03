@@ -15,6 +15,7 @@
 
 <div class="container">
   <div class="filterDiv showall">
+    <h3>전체 글</h3>
     <table>
       <thead>
         <tr>
@@ -34,8 +35,10 @@
             <td><%= post.user.present? ? post.user.email : "n/a" %></td>
             <td><%= time_ago_in_words(post.created_at) %> ago</td>
             <td>
-              <%= link_to "<span class='glyphicon glyphicon-edit'></span>".html_safe, edit_post_path(post) %>&nbsp;
-              <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, post, method: :delete, data: { confirm: '정말 삭제하시겠어요?' } %>
+              <% if user_signed_in? %>
+                <%= link_to icon('edit'), edit_post_path(post) if post.updatable_by?(current_user)%>&nbsp;
+                <%= link_to icon('trash'), post, method: :delete, data: { confirm: '정말 삭제하시겠어요?' } if post.deletable_by?(current_user) %>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -45,6 +48,7 @@
   </div>
 
   <div class="filterDiv software">
+    <h3>소프트웨어학과</h3>
     <table>
       <thead>
         <tr>
@@ -64,8 +68,10 @@
             <td><%= post.user.present? ? post.user.email : "n/a" %></td>
             <td><%= time_ago_in_words(post.created_at) %> ago</td>
             <td>
-              <%= link_to "<span class='glyphicon glyphicon-edit'></span>".html_safe, edit_post_path(post) %>&nbsp;
-              <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, post, method: :delete, data: { confirm: '정말 삭제하시겠어요?' } %>
+              <% if user_signed_in? %>
+                <%= link_to icon('edit'), edit_post_path(post) if post.updatable_by?(current_user)%>&nbsp;
+                <%= link_to icon('trash'), post, method: :delete, data: { confirm: '정말 삭제하시겠어요?' } if post.deletable_by?(current_user) %>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -75,6 +81,7 @@
   </div>
 
   <div class="filterDiv cyber_security">
+    <h3>사이버보안학과</h3>
     <table>
       <thead>
         <tr>
@@ -94,8 +101,10 @@
             <td><%= post.user.present? ? post.user.email : "n/a" %></td>
             <td><%= time_ago_in_words(post.created_at) %> ago</td>
             <td>
-              <%= link_to "<span class='glyphicon glyphicon-edit'></span>".html_safe, edit_post_path(post) %>&nbsp;
-              <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, post, method: :delete, data: { confirm: '정말 삭제하시겠어요?' } %>
+              <% if user_signed_in? %>
+                <%= link_to icon('edit'), edit_post_path(post) if post.updatable_by?(current_user)%>&nbsp;
+                <%= link_to icon('trash'), post, method: :delete, data: { confirm: '정말 삭제하시겠어요?' } if post.deletable_by?(current_user) %>
+              <% end %>
             </td>
           </tr>
         <% end %>
