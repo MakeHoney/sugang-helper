@@ -19,25 +19,111 @@
     <div class="col-md-4">
       <h4>HELPER</h4>
       <p>수강신청을 도와주는 사이트 짱짱</p>
-      <p><a class="btn btn-default" href="#">자세히보기</a></p>
-    </div>
-    <div class="col-md-4">
-      <h4>시간표</h4>
-      <p>내 시간표를 알아볼수있는 기능</p>
-      <p><a class="btn btn-default" href="#">시간표확인</a></p>
+      <p><a class="btn btn-default" data-target="#modal" data-toggle="modal">추천과목 보기</a></p>
     </div>
     <div class="col-md-4">
       <h4>남은건 뭐지</h4>
       <p>나에게 남은 과목은 무엇인지 알려주는 기능</p>
-      <p><a class="btn btn-default" data-target="#modal" data-toggle="modal">미수강 과목 확인</a></p>
+      <p><a class="btn btn-default" data-target="#modal2" data-toggle="modal">미수강 과목 확인</a></p>
     </div>
   </div>
 </center>
 
 
-
 <div class="row">
   <div class="modal" id="modal" tabindex="-1">
+    <div class= "modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="text-align: center;">
+          <strong>추천 수강과목</strong>
+          <buttron class="close" data-dismiss="modal">&times;</buttron>
+        </div>
+        <div class="modal-boty" style="text-align: center;">
+          <% if user_signed_in? && Student.exists?(stu_email: current_user.email) %>
+          <p>헬퍼가 제공하는 카테고리별 추천 과목 상위 5선입니다!</p><br>
+          <!--  0 : 전공코드(major_id),
+                1 : 과목명,
+                4 : 학점,
+                5 : 장소,
+                6 : 시간,
+                7 : 교수id    -->
+
+              <table>
+                <caption>교양</caption>
+                <tr>
+                  <td><strong>전공코드</strong></td>
+                  <td><strong>과목명</strong></td>
+                  <td><strong>교수명</strong></td>
+                  <td><strong>학점</strong></td>
+                  <td><strong>시간</strong></td>
+                  <td><strong>장소</strong></td>
+                </tr>
+                <% @Reco[0].each do |subject| %>
+                  <tr>
+                    <td><%= subject[0] %></td>
+                    <td><%= subject[1] %></td>
+                    <td><%= Professor.find(subject[7]).professor_name %></td>
+                    <td><%= subject[4] %></td>
+                    <td><%= subject[6] %></td>
+                    <td><%= subject[5] %></td>
+                  </tr>
+                <% end %>
+              </table>
+              <table>
+                <caption>전공필수</caption>
+                <tr>
+                  <td><strong>전공코드</strong></td>
+                  <td><strong>과목명</strong></td>
+                  <td><strong>교수명</strong></td>
+                  <td><strong>학점</strong></td>
+                  <td><strong>시간</strong></td>
+                  <td><strong>장소</strong></td>
+                </tr>
+                <% @Reco[1].each do |subject| %>
+                  <tr>
+                    <td><%= subject[0] %></td>
+                    <td><%= subject[1] %></td>
+                    <td><%= Professor.find(subject[7]).professor_name %></td>
+                    <td><%= subject[4] %></td>
+                    <td><%= subject[6] %></td>
+                    <td><%= subject[5] %></td>
+                  </tr>
+                <% end %>
+              </table>
+              <table>
+                <caption>전공선택</caption>
+                <tr>
+                  <td><strong>전공코드</strong></td>
+                  <td><strong>과목명</strong></td>
+                  <td><strong>교수명</strong></td>
+                  <td><strong>학점</strong></td>
+                  <td><strong>시간</strong></td>
+                  <td><strong>장소</strong></td>
+                </tr>
+                <% @Reco[2].each do |subject| %>
+                  <tr>
+                    <td><%= subject[0] %></td>
+                    <td><%= subject[1] %></td>
+                    <td><%= Professor.find(subject[7]).professor_name %></td>
+                    <td><%= subject[4] %></td>
+                    <td><%= subject[6] %></td>
+                    <td><%= subject[5] %></td>
+                  </tr>
+                <% end %>
+              </table>
+          <% elsif !user_signed_in? %>
+            로그인 후 이용 가능합니다!
+          <% else %>
+            해당 계정에 대한 학사정보가 존재하지 않습니다.
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="modal" id="modal2" tabindex="-1">
     <div class= "modal-dialog">
       <div class="modal-content">
         <div class="modal-header" style="text-align: center;">
@@ -127,6 +213,3 @@
     </div>
   </div>
 </div>
-
-<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
