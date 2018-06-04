@@ -2,18 +2,20 @@
 
 <%= simple_form_for(@post) do |f| %>
   <%= f.error_notification %>
+  <strong>학과</strong><br>
+  <div class="form-group">
+    <select name="post[category_id]">
+      <option value="1" class='form-control'>소프트웨어학과</option>
+      <option value="2" class='form-control'>사이버보안학과</option>
+    </select>
+  </div>
 
   <div class="form-group">
     <%= f.input :title, label: "제목", input_html: { class: 'form-control' } %>
   </div>
+
   <div class="form-group">
-    <%= f.input :category_id, label: "학과", input_html: { class: 'form-control' } %>
-  </div>
-  <div class="form-group">
-    <%= f.input :desc1, label: "임시", input_html: { class: 'form-control' } %>
-  </div>
-  <div class="form-group">
-    <%= f.input :desc2, label: "내용", input_html: { class: 'form-control' } %>
+    <%= f.input :desc, label: "내용", input_html: { class: 'form-control' } %>
   </div>
   <%= f.button :submit, class: 'btn btn-default', value: "완료"%>
   <%= link_to '뒤로가기', posts_path, class: 'btn btn-default' %>

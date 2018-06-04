@@ -3,11 +3,90 @@
 <div class='post'>
   <div class="title">
     <h3><%= @post.title %></h3>
-    학과 : <%= @post.category_id %>
+    <% if @post.category_id == 1 %>
+      학과 : 소프트웨어학과
+    <% else %>
+      학과 : 사이버보안학과
+    <% end %>
   </div>
+  <% if Student.exists?(stu_email: @post.user.email) %>
+    <div>
+      <strong>
+        <div style="text-align:center">
+          <%= @post.user.email %>님의 미수강 과목 리스트
+        </div>
+      </strong>
+      <table>
+        <caption>교양</caption>
+        <tr>
+          <td><strong>전공코드</strong></td>
+          <td><strong>과목명</strong></td>
+          <td><strong>교수명</strong></td>
+          <td><strong>학점</strong></td>
+          <td><strong>시간</strong></td>
+          <td><strong>장소</strong></td>
+        </tr>
+        <% @Liberal_Arts.each do |subject| %>
+          <tr>
+            <td><%= subject[0] %></td>
+            <td><%= subject[1] %></td>
+            <td><%= Professor.find(subject[7]).professor_name %></td>
+            <td><%= subject[4] %></td>
+            <td><%= subject[6] %></td>
+            <td><%= subject[5] %></td>
+          </tr>
+        <% end %>
+      </table>
+      <table>
+        <caption>전공필수</caption>
+        <tr>
+          <td><strong>전공코드</strong></td>
+          <td><strong>과목명</strong></td>
+          <td><strong>교수명</strong></td>
+          <td><strong>학점</strong></td>
+          <td><strong>시간</strong></td>
+          <td><strong>장소</strong></td>
+        </tr>
+        <% @Required_Course.each do |subject| %>
+          <tr>
+            <td><%= subject[0] %></td>
+            <td><%= subject[1] %></td>
+            <td><%= Professor.find(subject[7]).professor_name %></td>
+            <td><%= subject[4] %></td>
+            <td><%= subject[6] %></td>
+            <td><%= subject[5] %></td>
+          </tr>
+        <% end %>
+      </table>
+      <table>
+        <caption>전공선택</caption>
+        <tr>
+          <td><strong>전공코드</strong></td>
+          <td><strong>과목명</strong></td>
+          <td><strong>교수명</strong></td>
+          <td><strong>학점</strong></td>
+          <td><strong>시간</strong></td>
+          <td><strong>장소</strong></td>
+        </tr>
+        <% @Elective_Course.each do |subject| %>
+          <tr>
+            <td><%= subject[0] %></td>
+            <td><%= subject[1] %></td>
+            <td><%= Professor.find(subject[7]).professor_name %></td>
+            <td><%= subject[4] %></td>
+            <td><%= subject[6] %></td>
+            <td><%= subject[5] %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% else %>
+    <h3>학사 정보가 존재하지 않는 유저입니다.</h3>
+  <% end %>
+  <hr>
 
-  <div class="desc2">
-    <%= @post.desc2 %>
+  <div class="desc">
+    <%= @post.desc %>
   </div>
 
   <div class="user">
