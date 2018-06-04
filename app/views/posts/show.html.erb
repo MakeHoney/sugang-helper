@@ -1,3 +1,4 @@
+<body class = "test5" id = "test6">
 <p id="notice"><%= notice %></p>
 
 <div class='post'>
@@ -88,6 +89,10 @@
   <div class="desc">
     <%= @post.desc %>
   </div>
+  <hr>
+  
+  <%= render 'comments/comment' %>
+
 
   <div class="user">
     <strong>글쓴이: </strong>
@@ -96,7 +101,10 @@
   </div>
 </div>
 
-<hr>
-<%= link_to '글수정', edit_post_path(@post) , class: 'btn btn-default' %> 
-<%= link_to '뒤로가기', posts_path, class: 'btn btn-default' %>
-
+<hr> 
+<% if current_user == @post.user || @post.deletable_by?(current_user) %>
+  <%= link_to '게시글 수정', edit_post_path(@post) , class: 'btn btn-default' %> 
+  <%= link_to '게시글 삭제', @post, method: :delete, data: { confirm: '정말 삭제하시겠어요?' }%>
+  <%= link_to '뒤로가기', posts_path, class: 'btn btn-default' %>
+<% end %>
+</body>

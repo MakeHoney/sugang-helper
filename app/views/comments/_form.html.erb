@@ -1,0 +1,10 @@
+<%= simple_form_for([@post, @post.comments.build]) do |f| %>
+  <%= f.error_notification %>
+  <hr>
+  <div class="form-group">
+    <%= f.input :content, label: "댓글작성", input_html: { class: 'form-control' } %>
+  </div>
+
+  <%= f.button :submit, class: 'btn btn-default', value: "댓글달기" %>
+
+<% end %>

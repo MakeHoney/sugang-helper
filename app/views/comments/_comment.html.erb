@@ -1,0 +1,19 @@
+<strong>
+  <% if @comments.count > 0 %>
+    <%= @comments.count %>개의 댓글이 달렸습니다.
+  <% else %>
+    작성된 댓글이 없습니다.
+  <% end %>
+</strong>
+<% @comments.each do |comment| %>
+  <p>
+    <p><%= comment.content %> | <strong><%= comment.user.email %></strong></p>
+    <%= comment.created_at %>
+    <% if current_user == comment.user || comment.deletable_by?(current_user) %>
+      <%= link_to '수정', edit_post_comment_path(comment.post, comment) %> |
+      <%= link_to "삭제", [comment.post, comment], method: :delete, data: { confirm: '정말 삭제하시겠어요?' } %>
+    <% end %>
+  </p>
+<% end %>
+
+<%= render 'comments/form' %>

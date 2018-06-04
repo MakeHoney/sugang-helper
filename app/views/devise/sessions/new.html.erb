@@ -39,18 +39,26 @@
       
       
       <div class="form-inputs login100-form validate-form p-b-33 p-t-5">
-         <%= f.input :email, label: "이 메 일", required: true, autofocus: true, input_html: {class:"input100"} %>
-         <%= f.input :password, label: "비밀번호", required: true,  input_html: {class:"input100"} %>
-        <div class="checkbox"><label>
+          <div class="wrap-input100 validate-input" data-validate = "Enter username">
+        <%= f.input :email, label: "이메일", required: true, autofocus: true, input_html: {class:"input100"} %>
+          </div>
+         
+          <div class="wrap-input100 validate-input" data-validate = "Enter username">
+        <%= f.input :password, label: "비밀번호", required: true,  input_html: {class:"input100"} %>
+          </div>
+         
+        <div class="checkbox wrap-input100 validate-input"><label>
           <%= f.input :remember_me, label: "기억하기", as: :boolean if devise_mapping.rememberable? %>
+           <%= render "devise/shared/links" %>
         </label></div>
          
-        <%= render "devise/shared/links" %>
+       
       </div>
       
-     <div class="container">
-       <%= f.button :submit, "로그인", button type:"button"%>
+     <div class="form-actions container-login100-form-btn m-t-32">
+        <%= f.button :submit, "로그인", input_html: {class:"btn btn-default"} %>
       </div>
+       
      
   
     <% end %>

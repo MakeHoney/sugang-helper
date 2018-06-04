@@ -17,6 +17,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     loadList();
+    @comments = Comment.where(post_id: @post).order("created_at DESC")
     if Student.exists?(stu_email: @post.user.email)
       email = @post.user.email;
       stu_infos = Student.find_by(stu_email: email);

@@ -28,16 +28,16 @@
 
 
  <body class = "test3" id = "test4"> 
-  <div class="container-login100">
+<div class="container-login100" >
     <div class="wrap-login100 p-t-30 p-b-50">
-    <span class="login100-form-title p-b-41">
-					회원가입
-				</span>
+      <span class="login100-form-title p-b-41">
+          회원가입
+        </span>
     
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
       <div class="login100-form validate-form p-b-33 p-t-5">
-        
+       
           <div class="wrap-input100 validate-input" data-validate = "Enter username">
         <%= f.input :email, label: "이메일", required: true, autofocus: true, input_html: {class:"input100"} %>
           </div>
@@ -51,12 +51,10 @@
           </div>
       </div>
     
-        <div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn">
-							<%= f.button :submit,label:"회원가입",input_html:{class:"login100-form-btn"}%>
-						</button>
-					</div>
-     
+        
+      <div class="form-actions container-login100-form-btn m-t-32">
+        <%= f.button :submit, "회원가입", input_html: {class:"btn btn-default"} %>
+      </div>
       
             
       
