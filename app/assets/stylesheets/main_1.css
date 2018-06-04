@@ -333,15 +333,56 @@ iframe {
 
 /*------------------------------------------------------------------
 [ Button ]*/
+
+.seung_btn {
+ font-family: Ubuntu-Bold;
+  font-size: 18px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  min-width: 160px;
+  height: 42px;
+  border-radius: 21px;
+
+}
+
+
+
+
 .container-login100-form-btn {
-  width: 100%;
+ font-family: Ubuntu-Bold;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  min-width: 160px;
+  height: 42px;
+  border-radius: 21px;
+
+  background: #d41872;
+  background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+  position: relative;
+  z-index: 1;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  
 }
 
 .login100-form-btn {

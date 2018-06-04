@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
       Authority.logger.warn(error.message)
       redirect_to request.referrer.presence || root_path, :alert => 'You are not authorized to complete that action.'
     end
+    
     def loadList
   
       if user_signed_in? && Student.exists?(stu_email: current_user.email)
