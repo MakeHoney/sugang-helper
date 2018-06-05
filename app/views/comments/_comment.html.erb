@@ -7,7 +7,16 @@
 </strong>
 <% @comments.each do |comment| %>
   <p>
-    <p><%= comment.content %> | <strong><%= comment.user.email %></strong></p>
+    
+                
+    <% if Student.exists?(stu_email: comment.user.email) %>
+      <p><%= comment.content %> | <strong><%= Student.find_by(stu_email: comment.user.email).stu_name %></strong></p>
+    <% elsif comment.user.email.eql?("admin@ajou.ac.kr") %>
+      <p><%= comment.content %> | <strong>관리자</strong></p>
+    <% else %>
+      <p><%= comment.content %> | <strong><%= comment.user.email %></strong></p>
+    <% end %>
+          
     <%= comment.created_at %>
     <% if current_user == comment.user || comment.deletable_by?(current_user) %>
       <%= link_to '수정', edit_post_comment_path(comment.post, comment) %> |

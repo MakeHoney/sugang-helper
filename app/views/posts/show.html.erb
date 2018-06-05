@@ -4,17 +4,26 @@
 <div class='post'>
   <div class="title">
     <h3><%= @post.title %></h3>
-    <% if @post.category_id == 1 %>
-      학과 : 소프트웨어학과
+    <% if Student.exists?(stu_email: @post.user.email) %>
+      <strong><p>작성자: <%= Student.find_by(stu_email: @post.user.email).stu_name %></p></strong>
+      <% if @post.category_id == 1 %>
+        <strong><p>학과 : 소프트웨어학과</p></strong>
+      <% else %>
+        <strong><p>학과 : 사이버보안학과</p></strong>
+      <% end %>
+    <% elsif @post.user.email.eql?("admin@ajou.ac.kr") %>
+      <strong><p>작성자: 관리자</p></strong>
     <% else %>
-      학과 : 사이버보안학과
+      <strong><p>작성자: <%= @post.user.email %></p></strong>
     <% end %>
+
+  
   </div>
   <% if Student.exists?(stu_email: @post.user.email) %>
     <div>
       <strong>
         <div style="text-align:center">
-          <%= @post.user.email %>님의 미수강 과목 리스트
+          <%= Student.find_by(stu_email: @post.user.email).stu_name %>님의 미수강 과목 리스트
         </div>
       </strong>
       <table>
@@ -27,14 +36,18 @@
           <td><strong>시간</strong></td>
           <td><strong>장소</strong></td>
         </tr>
-        <% @Liberal_Arts.each do |subject| %>
+        <% Subject.connection.exec_query("SELECT * FROM subjects WHERE 
+        (category_id = 0 or major_id = #{Student.find_by(stu_email: @post.user.email)[:major_id]}) 
+        and category_id = 0 and subj_id NOT IN 
+        (SELECT subj_id FROM take_subjects 
+        WHERE stu_id=#{Student.find_by(stu_email: @post.user.email)[:stu_id]});").each do |subject| %>
           <tr>
-            <td><%= subject[0] %></td>
-            <td><%= subject[1] %></td>
-            <td><%= Professor.find(subject[7]).professor_name %></td>
-            <td><%= subject[4] %></td>
-            <td><%= subject[6] %></td>
-            <td><%= subject[5] %></td>
+            <td><%= subject["major_id"] %></td>
+            <td><%= subject["subj_name"] %></td>
+            <td><%= Professor.find(subject["professor_id"]).professor_name %></td>
+            <td><%= subject["subj_grade"] %></td>
+            <td><%= subject["time"] %></td>
+            <td><%= subject["location"] %></td>
           </tr>
         <% end %>
       </table>
@@ -48,14 +61,18 @@
           <td><strong>시간</strong></td>
           <td><strong>장소</strong></td>
         </tr>
-        <% @Required_Course.each do |subject| %>
+        <% Subject.connection.exec_query("SELECT * FROM subjects WHERE 
+        (category_id = 0 or major_id = #{Student.find_by(stu_email: @post.user.email)[:major_id]}) 
+        and category_id = 1 and subj_id NOT IN 
+        (SELECT subj_id FROM take_subjects 
+        WHERE stu_id=#{Student.find_by(stu_email: @post.user.email)[:stu_id]});").each do |subject| %>
           <tr>
-            <td><%= subject[0] %></td>
-            <td><%= subject[1] %></td>
-            <td><%= Professor.find(subject[7]).professor_name %></td>
-            <td><%= subject[4] %></td>
-            <td><%= subject[6] %></td>
-            <td><%= subject[5] %></td>
+            <td><%= subject["major_id"] %></td>
+            <td><%= subject["subj_name"] %></td>
+            <td><%= Professor.find(subject["professor_id"]).professor_name %></td>
+            <td><%= subject["subj_grade"] %></td>
+            <td><%= subject["time"] %></td>
+            <td><%= subject["location"] %></td>
           </tr>
         <% end %>
       </table>
@@ -69,18 +86,26 @@
           <td><strong>시간</strong></td>
           <td><strong>장소</strong></td>
         </tr>
-        <% @Elective_Course.each do |subject| %>
+        <% Subject.connection.exec_query("SELECT * FROM subjects WHERE 
+        (category_id = 0 or major_id = #{Student.find_by(stu_email: @post.user.email)[:major_id]}) 
+        and category_id = 2 and subj_id NOT IN 
+        (SELECT subj_id FROM take_subjects 
+        WHERE stu_id=#{Student.find_by(stu_email: @post.user.email)[:stu_id]});").each do |subject| %>
           <tr>
-            <td><%= subject[0] %></td>
-            <td><%= subject[1] %></td>
-            <td><%= Professor.find(subject[7]).professor_name %></td>
-            <td><%= subject[4] %></td>
-            <td><%= subject[6] %></td>
-            <td><%= subject[5] %></td>
+            <td><%= subject["major_id"] %></td>
+            <td><%= subject["subj_name"] %></td>
+            <td><%= Professor.find(subject["professor_id"]).professor_name %></td>
+            <td><%= subject["subj_grade"] %></td>
+            <td><%= subject["time"] %></td>
+            <td><%= subject["location"] %></td>
           </tr>
         <% end %>
       </table>
     </div>
+    
+    
+  <% elsif @post.user.email.eql?("admin@ajou.ac.kr") %>
+    <h3>해당 글은 관리자가 작성한 글입니다.</h3>
   <% else %>
     <h3>학사 정보가 존재하지 않는 유저입니다.</h3>
   <% end %>

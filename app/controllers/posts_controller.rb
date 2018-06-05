@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :authenticate_user!, except: [ :index ]
   
 
   # GET /posts
@@ -18,43 +18,18 @@ class PostsController < ApplicationController
   def show
     loadList();
     @comments = Comment.where(post_id: @post).order("created_at DESC")
-    if Student.exists?(stu_email: @post.user.email)
-      email = @post.user.email;
-      stu_infos = Student.find_by(stu_email: email);
-      stu_major = stu_infos[:major_id];
-      stu_id = stu_infos[:stu_id];
-      coursesNotTake = Hash.new();
-      coursesReco = Hash.new();
-      3.times do |i|
-        sql = "SELECT * FROM subjects WHERE (category_id = 0 or major_id = #{stu_major}) and category_id = #{i} and subj_id NOT IN (
-               SELECT subj_id FROM take_subjects WHERE stu_id=#{stu_id}
-              );"
-        coursesNotTake[SubjectCategory.find(i).category_name] = Subject.connection.exec_query(sql).rows;
-      end
-    
-      3.times do |i|
-        sql2 = "SELECT * FROM subjects WHERE (category_id = 0 or major_id = #{stu_major}) and category_id = #{i} and subj_id NOT IN (
-               SELECT subj_id FROM take_subjects WHERE stu_id=#{stu_id}
-              ) order by subj_grade asc limit 5;"
-        coursesReco[SubjectCategory.find(i).category_name] = Subject.connection.exec_query(sql2).rows;
-      end
-    
-      @Liberal_Arts = coursesNotTake['Liberal_Arts'];
-      @Required_Course = coursesNotTake['Required_Course'];
-      @Elective_Course = coursesNotTake['Elective_Course'];
-    end
   end
 
   # GET /posts/new
   def new
     @post = Post.new
-    loadList()
+    loadList();
   end
 
   # GET /posts/1/edit
   def edit
     authorize_action_for @post
-    loadList()
+    loadList();
   end
 
   # POST /posts

@@ -73,9 +73,21 @@
       <tbody>
         <% @posts.each do |post| %>
           <tr>
-            <td class="col-md-6 col-xs-6"><%= link_to post.title, post %></td>
-            <td><%= post.category_id %></td>
-            <td><%= post.user.present? ? post.user.email : "n/a" %></td>
+            <% if user_signed_in? %>
+              <td class="col-md-6 col-xs-6"><%= link_to post.title, post %> [<%= post.comments.count %>]</td>
+            <% else %>
+              <td class="col-md-6 col-xs-6"><%= post.title %> [<%= post.comments.count %>]</td>
+            <% end %>
+            <td><%= Category.find(post.category_id).name %></td>
+            
+            <% if Student.exists?(stu_email: post.user.email) %>
+              <td><%= Student.find_by(stu_email: post.user.email).stu_name %></td>
+            <% elsif post.user.email.eql?("admin@ajou.ac.kr") %>
+              <td>관리자</td>
+            <% else %>
+              <td><%= post.user.email %></td>
+            <% end %>
+            
             <td><%= time_ago_in_words(post.created_at) %> ago</td>
             <td>
               <% if user_signed_in? %>
@@ -106,9 +118,21 @@
       <tbody>
         <% @postsSoft.each do |post| %>
           <tr>
-            <td class="col-md-6 col-xs-6"><%= link_to post.title, post %></td>
-            <td><%= post.category_id %></td>
-            <td><%= post.user.present? ? post.user.email : "n/a" %></td>
+            <% if user_signed_in? %>
+              <td class="col-md-6 col-xs-6"><%= link_to post.title, post %> [<%= post.comments.count %>]</td>
+            <% else %>
+              <td class="col-md-6 col-xs-6"><%= post.title %> [<%= post.comments.count %>]</td>
+            <% end %>
+            <td><%= Category.find(post.category_id).name %></td>
+            
+            <% if Student.exists?(stu_email: post.user.email) %>
+              <td><%= Student.find_by(stu_email: post.user.email).stu_name %></td>
+            <% elsif post.user.email.eql?("admin@ajou.ac.kr") %>
+              <td>관리자</td>
+            <% else %>
+              <td><%= post.user.email %></td>
+            <% end %>
+            
             <td><%= time_ago_in_words(post.created_at) %> ago</td>
             <td>
               <% if user_signed_in? %>
@@ -139,9 +163,21 @@
       <tbody>
         <% @postsCyber.each do |post| %>
           <tr>
-            <td class="col-md-6 col-xs-6"><%= link_to post.title, post %></td>
-            <td><%= post.category_id %></td>
-            <td><%= post.user.present? ? post.user.email : "n/a" %></td>
+            <% if user_signed_in? %>
+              <td class="col-md-6 col-xs-6"><%= link_to post.title, post %> [<%= post.comments.count %>]</td>
+            <% else %>
+              <td class="col-md-6 col-xs-6"><%= post.title %> [<%= post.comments.count %>]</td>
+            <% end %>
+            <td><%= Category.find(post.category_id).name %></td>
+            
+            <% if Student.exists?(stu_email: post.user.email) %>
+              <td><%= Student.find_by(stu_email: post.user.email).stu_name %></td>
+            <% elsif post.user.email.eql?("admin@ajou.ac.kr") %>
+              <td>관리자</td>
+            <% else %>
+              <td><%= post.user.email %></td>
+            <% end %>
+            
             <td><%= time_ago_in_words(post.created_at) %> ago</td>
             <td>
               <% if user_signed_in? %>

@@ -51,11 +51,16 @@
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <b class="caret"></b></a>
+                <% if Student.exists?(stu_email: current_user.email) %>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=Student.find_by(stu_email: current_user.email).stu_name %><b class="caret"></b></a>
+                <% elsif current_user.email.eql?("admin@ajou.ac.kr") %>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">관리자계정<b class="caret"></b></a>
+                <% else %>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">미인증계정<b class="caret"></b></a>
+                <% end %>
                 <ul class="dropdown-menu">
                   <li><%= link_to "권한 : " + user_roles(current_user), '#' %></li>
-                  <li><%= link_to "수강내역", "#" %></li>
-                  <li><%= link_to "비밀번호 수정", edit_user_registration_path %></li>
+                  <li><%= link_to "회원정보 수정", edit_user_registration_path %></li>
                   <li><%= link_to "로그아웃", destroy_user_session_path, method: :delete, data: { confirm: "로그아웃합니다." } %></li>
                 </ul>
               </li>

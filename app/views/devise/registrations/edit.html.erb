@@ -10,23 +10,22 @@
     <%= f.error_notification %>
    
     <div class="form-inputs login100-form validate-form p-b-33 p-t-5">
-      <div class="wrap-input100 validate-input" data-validate = "Enter username">
-        <%= f.input :email, label: "이메일", required: true, autofocus: true, input_html: {class:"input100"} %>
-      </div>
       
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
-  <div class="wrap-input100 validate-input" data-validate = "Enter username", input_html: {class:"input100"}>
+      
+      <div class="wrap-input100 validate-input" data-validate = "Enter username">
+      <%= f.input :current_password, label: "현재 비밀번호", required: true, input_html: {class:"input100"} %>
+      </div>
+      <div class="wrap-input100 validate-input" data-validate = "Enter username", input_html: {class:"input100"}>
       <%= f.input :password, label: "변경할 비밀번호", autocomplete: "off", required: false, input_html: {class:"input100"}%>
       </div>
       <div class="wrap-input100 validate-input" data-validate = "Enter username">
       <%= f.input :password_confirmation, label: "변경할 비밀번호 확인", required: false, input_html: {class:"input100"} %>
       </div>
-      <div class="wrap-input100 validate-input" data-validate = "Enter username">
-      <%= f.input :current_password, label: "현재 비밀번호", required: true, input_html: {class:"input100"} %>
-      </div>
+
        <p><%= link_to "회원탈퇴하기", registration_path(resource_name), data: { confirm: "탈퇴하신 정보는 복구가 불가능합니다.\n정말 탈퇴하시겠어요?" }, method: :delete %></p>
   
     <%= link_to "돌아가기", :back %>
