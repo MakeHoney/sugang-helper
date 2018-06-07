@@ -39,15 +39,16 @@
       
       
       <div class="form-inputs login100-form validate-form p-b-33 p-t-5">
-          <div class="wrap-input100 validate-input" data-validate = "Enter username">
+          <div class="wrap-input100 validate-input" data-validate = "Enter username" style = "text-align:center">
+            
         <%= f.input :email, label: "이메일", required: true, autofocus: true, input_html: {class:"input100"} %>
           </div>
          
-          <div class="wrap-input100 validate-input" data-validate = "Enter username">
+          <div class="wrap-input100 validate-input" data-validate = "Enter username" style = "text-align:center">
         <%= f.input :password, label: "비밀번호", required: true,  input_html: {class:"input100"} %>
           </div>
          
-        <div class="checkbox wrap-input100 validate-input"><label>
+        <div class="checkbox wrap-input100 validate-input" style = "text-align:center"><label>
           <%= f.input :remember_me, label: "기억하기", as: :boolean if devise_mapping.rememberable? %>
            <%= render "devise/shared/links" %>
         </label></div>

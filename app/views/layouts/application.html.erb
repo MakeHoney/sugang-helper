@@ -10,9 +10,96 @@
     <!-- for mobile end -->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gaegu|Gamja+Flower|Nanum+Myeongjo|Poor+Story" rel="stylesheet">
+ <style>
+   #font1{
+     font-family: 'Nanum Myeongjo', serif;
+     /*font-size: 15px;*/
+   }
+    #font2{
+     font-family: 'Poor Story', cursive;
+     /*text-align: center;*/
+     /*font-size: 20px;*/
+   }
+    #font3{
+     font-family: 'Gamja Flower', cursive;
+     /*text-align: center;*/
+     /*font-size: 20px;*/
+    }
+    #font4{
+     font-family: 'Do Hyeon', sans-serif;
+     /*font-size: 15px;*/
+   }
+   #font5{
+     font-family: 'Gaegu', cursive;
+     /*font-size: 15px;*/
+   }
+   #font6{
+    font-family: 'Black Han Sans', sans-serif;
+     /*font-size: 15px;*/
+   }
+   
+ </style>
+ 
+ 
+ <style tyle="text/css">
 
+html,
 
-    <title>Project0</title>
+body {
+
+    margin:0;
+
+    padding:0;
+
+    height:100%;
+
+}
+
+#wrapper {
+
+	position:relative;
+
+    min-height:100%;
+
+}
+
+#header {
+
+	height:70px;
+
+    background:#ccc;
+
+}
+
+#container {
+
+    padding:20px;
+
+}
+
+#footer {
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+
+    height:70px;   
+
+    background:#ccc;
+
+}
+
+</style>
+ 
+ 
+ 
+ 
+
+    <title>AJOU HELPER</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -32,11 +119,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">AJOU HELPER</a>
+          
+
+         
+          <span id="text1" class="nav navbar-nav">
+             <img class ="img" src='https://i.imgur.com/cwzwY3q.jpg' style="vertical-align:bottom">
+              <a class=" navbar-brand" id="font4" href="/" >AJOU HELPER</a>
+          </span>
+          
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "게시판", "/posts" %></li>
+            <li ><%= link_to "게시판", "/posts" %></li>
             <li><%= link_to "과목 추천받기", "#", data: { toggle: "modal", target: "#modal" } %> </li>
             <li><%= link_to "미수강과목 열람", "#", data: { toggle: "modal", target: "#modal2" } %> </li>
           </ul>
@@ -85,7 +179,7 @@
     <div class= "modal-dialog">
       <div class="modal-content">
         <div class="modal-header" style="text-align: center;">
-          <strong>추천 수강과목</strong>
+          <strong class="text1">추천 수강과목</strong>
           <buttron class="close" data-dismiss="modal">&times;</buttron>
         </div>
         <div class="modal-boty" style="text-align: center;">
@@ -101,7 +195,7 @@
               <table>
                 <caption>교양</caption>
                 <tr>
-                  <td><strong>전공코드</strong></td>
+                  <td><strong>학년</strong></td>
                   <td><strong>과목명</strong></td>
                   <td><strong>교수명</strong></td>
                   <td><strong>학점</strong></td>
@@ -110,10 +204,10 @@
                 </tr>
                 <% @Reco[0].each do |subject| %>
                   <tr>
-                    <td><%= subject[0] %></td>
+                    <td><%= subject[4] %></td>
                     <td><%= subject[1] %></td>
                     <td><%= Professor.find(subject[7]).professor_name %></td>
-                    <td><%= subject[4] %></td>
+                    <td><%= subject[8] %></td>
                     <td><%= subject[6] %></td>
                     <td><%= subject[5] %></td>
                   </tr>
@@ -122,7 +216,7 @@
               <table>
                 <caption>전공필수</caption>
                 <tr>
-                  <td><strong>전공코드</strong></td>
+                  <td><strong>학년</strong></td>
                   <td><strong>과목명</strong></td>
                   <td><strong>교수명</strong></td>
                   <td><strong>학점</strong></td>
@@ -131,19 +225,20 @@
                 </tr>
                 <% @Reco[1].each do |subject| %>
                   <tr>
-                    <td><%= subject[0] %></td>
+                    <td><%= subject[4] %></td>
                     <td><%= subject[1] %></td>
                     <td><%= Professor.find(subject[7]).professor_name %></td>
-                    <td><%= subject[4] %></td>
+                    <td><%= subject[8] %></td>
                     <td><%= subject[6] %></td>
                     <td><%= subject[5] %></td>
                   </tr>
                 <% end %>
+                <p>&nbsp;</p>
               </table>
               <table>
                 <caption>전공선택</caption>
                 <tr>
-                  <td><strong>전공코드</strong></td>
+                  <td><strong>학년</strong></td>
                   <td><strong>과목명</strong></td>
                   <td><strong>교수명</strong></td>
                   <td><strong>학점</strong></td>
@@ -152,15 +247,17 @@
                 </tr>
                 <% @Reco[2].each do |subject| %>
                   <tr>
-                    <td><%= subject[0] %></td>
+                    <td><%= subject[4] %></td>
                     <td><%= subject[1] %></td>
                     <td><%= Professor.find(subject[7]).professor_name %></td>
-                    <td><%= subject[4] %></td>
+                    <td><%= subject[8] %></td>
                     <td><%= subject[6] %></td>
                     <td><%= subject[5] %></td>
                   </tr>
                 <% end %>
+                <p>&nbsp;</p>
               </table>
+              <p>&nbsp;</p><p>&nbsp;</p>
           <% elsif !user_signed_in? %>
             로그인 후 이용 가능합니다!
           <% else %>
@@ -177,7 +274,7 @@
     <div class= "modal-dialog">
       <div class="modal-content">
         <div class="modal-header" style="text-align: center;">
-          <strong>남은건 뭐지?</strong>
+          <strong class="text1">남은건 뭐지?</strong>
           <buttron class="close" data-dismiss="modal">&times;</buttron>
         </div>
         <div class="modal-boty" style="text-align: center;">
@@ -210,6 +307,7 @@
                     <td><%= subject[5] %></td>
                   </tr>
                 <% end %>
+                <p>&nbsp;</p>
               </table>
               <table>
                 <caption>전공필수</caption>
@@ -231,6 +329,7 @@
                     <td><%= subject[5] %></td>
                   </tr>
                 <% end %>
+                <p>&nbsp;</p>
               </table>
               <table>
                 <caption>전공선택</caption>
@@ -252,7 +351,10 @@
                     <td><%= subject[5] %></td>
                   </tr>
                 <% end %>
+                <p>&nbsp;</p>
               </table>
+              <p>&nbsp;</p>
+              <p>&nbsp;</p>
           <% elsif !user_signed_in? %>
             로그인 후 이용 가능합니다!
           <% else %>
@@ -264,7 +366,6 @@
   </div>
 </div>
 
-
     <footer  id="footer">
 
       <div class="copyright">
@@ -273,8 +374,6 @@
         </p>
       </div>
     </footer>
-
-
 </body>
 
 </html>

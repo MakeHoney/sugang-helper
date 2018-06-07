@@ -1,3 +1,4 @@
+
 <strong>
   <% if @comments.count > 0 %>
     <%= @comments.count %>개의 댓글이 달렸습니다.
@@ -23,6 +24,6 @@
       <%= link_to "삭제", [comment.post, comment], method: :delete, data: { confirm: '정말 삭제하시겠어요?' } %>
     <% end %>
   </p>
-<% end %>
 
+<% end %>
 <%= render 'comments/form' %>

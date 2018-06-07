@@ -1,3 +1,4 @@
+
 <head>
 	<title>수강신청 헬퍼 회원가입</title>
 	<meta charset="UTF-8">
@@ -25,9 +26,9 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
+ <body class = "test8"> 
 
 
- <body class = "test3" id = "test4"> 
 <div class="container-login100" >
     <div class="wrap-login100 p-t-30 p-b-50">
       <span class="login100-form-title p-b-41">
@@ -38,15 +39,15 @@
       <%= f.error_notification %>
       <div class="login100-form validate-form p-b-33 p-t-5">
        
-          <div class="wrap-input100 validate-input" data-validate = "Enter username">
+          <div class="wrap-input100 validate-input" data-validate = "Enter username" style = "text-align:center">
         <%= f.input :email, label: "이메일", required: true, autofocus: true, input_html: {class:"input100"} %>
           </div>
           
-           <div class="wrap-input100 validate-input" data-validate = "Enter username">
+           <div class="wrap-input100 validate-input" data-validate = "Enter username" style = "text-align:center">
         <%= f.input :password, label: "비밀번호", required: true,  input_html: {class:"input100"} %>
           </div>
         
-           <div class="wrap-input100 validate-input" data-validate = "Enter username">
+           <div class="wrap-input100 validate-input" data-validate = "Enter username" style = "text-align:center">
         <%= f.input :password_confirmation, label: "비밀번호 확인", input_html: {class:"input100"}, rrequired: true %>
           </div>
       </div>
