@@ -1,3 +1,5 @@
+# RAILS_ENV=production rails server
+
 # Load the Rails application.
 require_relative 'application'
 

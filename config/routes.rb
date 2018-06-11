@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
   
   devise_for :users, controllers: {registrations: 'users'}
-  
+
   resources :mains
 
   root to: 'mains#index'
